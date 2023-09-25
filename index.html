@@ -1,28 +1,503 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html>
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Teste de formulário</title>
+    <title>Birosca da JU</title>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <div class="container">
-      <form
-        action="https://api.sheetmonkey.io/form/kWX6GEoPxPdyETwZqaRVY1"
-        method="post"
-      >
-        <label>Nome: <input placeholder="Matheus L." name="Name" /></label>
-        <label
-          >Email:
-          <input placeholder="my-email@site.com" type="email" name="Email"
-        /></label>
+    <form id="dataForm" onsubmit="return validateForm()">
+      <h1>Pedidos</h1>
+      <input
+        type="text"
+        id="name"
+        name="name"
+        required
+        placeholder="Nome Completo ou Login de rede"
+      /><br /><br />
+
+      <div>
+        <label for="amendoim">Amendoim (R$1.00):</label>
+        <a href="#" onclick="decrementaValor(0, 'amendoim'); return false;"
+          >-</a
+        >
+        <input type="number" id="amendoim" name="amendoim" min="0" /><a
+          href="#"
+          onclick="incrementaValor(10, 'amendoim');return false;"
+          >+</a
+        ><br />
+      </div>
+      <div>
+        <label for="bananada">Bananada (R$1.00):</label>
+        <a href="#" onclick="decrementaValor(0, 'bananada'); return false;"
+          >-</a
+        >
+        <input type="number" id="bananada" name="bananada" min="0" /><a
+          href="#"
+          onclick="incrementaValor(10, 'bananada');return false;"
+          >+</a
+        ><br />
+      </div>
+      <div>
+        <label for="doceabobora">Doce de Abóbora (R$1.70):</label>
+        <a href="#" onclick="decrementaValor(0, 'doceabobora'); return false;"
+          >-</a
+        >
+        <input type="number" id="doceabobora" name="doceabobora" min="0" /><a
+          href="#"
+          onclick="incrementaValor(10, 'doceabobora');return false;"
+          >+</a
+        ><br />
+      </div>
+      <div>
+        <label for="doceamendoim">Doce de Amendoim (R$1.70):</label>
+        <a href="#" onclick="decrementaValor(0, 'doceamendoim'); return false;"
+          >-</a
+        >
+        <input type="number" id="doceamendoim" name="doceamendoim" min="0" /><a
+          href="#"
+          onclick="incrementaValor(10, 'doceamendoim');return false;"
+          >+</a
+        ><br />
+      </div>
+      <div>
+        <label for="pacoquita">Paçoquita (R$0.50):</label>
+        <a href="#" onclick="decrementaValor(0, 'pacoquita'); return false;"
+          >-</a
+        >
+        <input type="number" id="pacoquita" name="pacoquita" min="0" /><a
+          href="#"
+          onclick="incrementaValor(10, 'pacoquita');return false;"
+          >+</a
+        ><br />
+      </div>
+      <div>
+        <label for="5star">5star (R$2.50):</label>
+        <a href="#" onclick="decrementaValor(0, '5star'); return false;">-</a>
+        <input type="number" id="5star" name="5star" min="0" /><a
+          href="#"
+          onclick="incrementaValor(10, '5star');return false;"
+          >+</a
+        >
+      </div>
+      <div>
+        <label for="alpino">Alpino (R$2.20):</label>
+        <a href="#" onclick="decrementaValor(0, 'alpino'); return false;">-</a>
+        <input type="number" id="alpino" name="alpino" min="0" /><a
+          href="#"
+          onclick="incrementaValor(10, 'alpino');return false;"
+          >+</a
+        ><br />
+      </div>
+      <div>
+        <label for="baton">Baton (R$1.30):</label>
+        <a href="#" onclick="decrementaValor(0, 'baton'); return false;">-</a>
+        <input type="number" id="baton" name="baton" min="0" /><a
+          href="#"
+          onclick="incrementaValor(10, 'baton');return false;"
+          >+</a
+        ><br />
+      </div>
+      <div>
+        <label for="bis">Bis (R$2.50):</label>
+        <a href="#" onclick="decrementaValor(0, 'bis'); return false;">-</a>
+        <input type="number" id="bis" name="bis" min="0" /><a
+          href="#"
+          onclick="incrementaValor(10, 'bis');return false;"
+          >+</a
+        ><br />
+      </div>
+      <div>
+        <label for="caribe">Caribe (R$2.20):</label>
+        <a href="#" onclick="decrementaValor(0, 'caribe'); return false;">-</a>
+        <input type="number" id="caribe" name="caribe" min="0" /><a
+          href="#"
+          onclick="incrementaValor(10, 'caribe');return false;"
+          >+</a
+        ><br />
+      </div>
+      <div>
+        <label for="galak">Galak (R$2.20):</label>
+        <a href="#" onclick="decrementaValor(0, 'galak'); return false;">-</a>
+        <input type="number" id="galak" name="galak" min="0" /><a
+          href="#"
+          onclick="incrementaValor(10, 'galak');return false;"
+          >+</a
+        ><br />
+      </div>
+      <div>
+        <label for="chockito">Chockito (R$2.20):</label>
+        <a href="#" onclick="decrementaValor(0, 'chockito'); return false;"
+          >-</a
+        >
+        <input type="number" id="chockito" name="chockito" min="0" /><a
+          href="#"
+          onclick="incrementaValor(10, 'chockito');return false;"
+          >+</a
+        ><br />
+      </div>
+      <div>
+        <label for="crocante">Crocante (R$2.20):</label>
+        <a href="#" onclick="decrementaValor(0, 'crocante'); return false;"
+          >-</a
+        >
+        <input type="number" id="crocante" name="crocante" min="0" /><a
+          href="#"
+          onclick="incrementaValor(10, 'crocante');return false;"
+          >+</a
+        ><br />
+      </div>
+      <div>
+        <label for="crunch">Crunch (R$2.20):</label>
+        <a href="#" onclick="decrementaValor(0, 'resultado2'); return false;"
+          >-</a
+        >
+        <input type="number" id="crunch" name="crunch" min="0" /><a
+          href="#"
+          onclick="incrementaValor(10, 'crunch');return false;"
+          >+</a
+        ><br />
+      </div>
+      <div>
+        <label for="kitkat">Kitkat (R$3.00):</label>
+        <a href="#" onclick="decrementaValor(0, 'resultado2'); return false;"
+          >-</a
+        >
+        <input type="number" id="kitkat" name="kitkat" min="0" /><a
+          href="#"
+          onclick="incrementaValor(10, 'kitkat');return false;"
+          >+</a
+        ><br />
+      </div>
+      <div>
+        <label for="lolo">Lolo (R$2.20):</label>
+        <a href="#" onclick="decrementaValor(0, 'lolo'); return false;">-</a>
+        <input type="number" id="lolo" name="lolo" min="0" /><a
+          href="#"
+          onclick="incrementaValor(10, 'lolo');return false;"
+          >+</a
+        ><br />
+      </div>
+      <div>
+        <label for="moca">Moça (R$2.50):</label>
+        <a href="#" onclick="decrementaValor(0, 'moca'); return false;">-</a>
+        <input type="number" id="moca" name="moca" min="0" /><a
+          href="#"
+          onclick="incrementaValor(10, 'moca');return false;"
+          >+</a
+        ><br />
+      </div>
+      <div>
+        <label for="prestigio">Prestigio (R$2.20):</label>
+        <a href="#" onclick="decrementaValor(0, 'prestigio'); return false;"
+          >-</a
+        >
+        <input type="number" id="prestigio" name="prestigio" min="0" /><a
+          href="#"
+          onclick="incrementaValor(10, 'prestigio');return false;"
+          >+</a
+        ><br />
+      </div>
+      <div>
+        <label for="sensacao">Sensação (R$2.50):</label>
+        <a href="#" onclick="decrementaValor(0, 'sensacao'); return false;"
+          >-</a
+        >
+        <input type="number" id="sensacao" name="sensacao" min="0" /><a
+          href="#"
+          onclick="incrementaValor(10, 'sensacao');return false;"
+          >+</a
+        ><br />
+      </div>
+      <div>
+        <label for="snicker">Snicker (R$2.50):</label>
+        <a href="#" onclick="decrementaValor(0, 'snicker'); return false;">-</a>
+        <input type="number" id="snicker" name="snicker" min="0" /><a
+          href="#"
+          onclick="incrementaValor(10, 'snicker');return false;"
+          >+</a
+        ><br />
+      </div>
+      <div>
+        <label for="talento">Talento (R$2.20):</label>
+        <a href="#" onclick="decrementaValor(0, 'talento'); return false;">-</a>
+        <input type="number" id="talento" name="talento" min="0" /><a
+          href="#"
+          onclick="incrementaValor(10, 'talento');return false;"
+          >+</a
+        ><br />
+      </div>
+      <div>
+        <label for="trentoallegro">Trento Allegro (R$2.50):</label>
+        <a href="#" onclick="decrementaValor(0, 'resultado2'); return false;"
+          >-</a
+        >
         <input
-          type="hidden"
-          name="Created"
-          value="x-sheetmonkey-current-date-time"
-        />
-        <button type="submit">Enviar</button>
-      </form>
-    </div>
+          type="number"
+          id="trentoallegro"
+          name="trentoallegro"
+          min="0"
+        /><a
+          href="#"
+          onclick="incrementaValor(10, 'trentoallegro');return false;"
+          >+</a
+        ><br />
+      </div>
+      <div>
+        <label for="trentobites">Trento Bites (R$2.50):</label>
+        <a href="#" onclick="decrementaValor(0, 'trentobites'); return false;"
+          >-</a
+        >
+        <input type="number" id="trentobites" name="trentobites" min="0" /><a
+          href="#"
+          onclick="incrementaValor(10, 'trentobites');return false;"
+          >+</a
+        ><br />
+      </div>
+      <div>
+        <label for="trento">Trento (R$2.20):</label>
+        <a href="#" onclick="decrementaValor(0, 'trento'); return false;">-</a>
+        <input type="number" id="trento" name="trento" min="0" /><a
+          href="#"
+          onclick="incrementaValor(10, 'trento');return false;"
+          >+</a
+        ><br />
+      </div>
+      <div>
+        <label for="twix">Twix (R$2.50):</label>
+        <a href="#" onclick="decrementaValor(0, 'twix'); return false;">-</a>
+        <input type="number" id="twix" name="twix" min="0" /><a
+          href="#"
+          onclick="incrementaValor(10, 'twix');return false;"
+          >+</a
+        ><br />
+      </div>
+      <div>
+        <label for="nutela">Nutela (R$3.50):</label>
+        <a href="#" onclick="decrementaValor(0, 'nutela'); return false;">-</a>
+        <input type="number" id="nutela" name="nutela" min="0" /><a
+          href="#"
+          onclick="incrementaValor(10, 'nutela');return false;"
+          >+</a
+        ><br />
+      </div>
+      <div>
+        <label for="mentos">Chiclete Mentos (R$2.00):</label>
+        <a href="#" onclick="decrementaValor(0, 'mentos'); return false;">-</a>
+        <input type="number" id="mentos" name="mentos" min="0" /><a
+          href="#"
+          onclick="incrementaValor(10, 'mentos');return false;"
+          >+</a
+        ><br />
+      </div>
+      <div>
+        <label for="halls">Halls (R$1.50):</label>
+        <a href="#" onclick="decrementaValor(0, 'halls'); return false;">-</a>
+
+        <input type="number" id="halls" name="halls" min="0" /><a
+          href="#"
+          onclick="incrementaValor(10, 'halls');return false;"
+          >+</a
+        ><br />
+      </div>
+      <div>
+        <label for="jujuba">Jujuba (R$1.00):</label>
+        <a href="#" onclick="decrementaValor(0, 'jujuba'); return false;">-</a>
+        <input type="number" id="jujuba" name="jujuba" min="0" /><a
+          href="#"
+          onclick="incrementaValor(10, 'jujuba');return false;"
+          >+</a
+        ><br />
+      </div>
+      <div>
+        <label for="mentostrident">Mentos Trident (R$2.00):</label>
+        <a href="#" onclick="decrementaValor(0, 'mentostrident'); return false;"
+          >-</a
+        >
+        <input
+          type="number"
+          id="mentostrident"
+          name="mentostrident"
+          min="0"
+        /><a
+          href="#"
+          onclick="incrementaValor(10, 'mentostrident');return false;"
+          >+</a
+        ><br />
+      </div>
+      <div>
+        <label for="batata">Batata (R$1.30):</label>
+        <a href="#" onclick="decrementaValor(0, 'batata'); return false;">-</a>
+        <input type="number" id="batata" name="batata" min="0" /><a
+          href="#"
+          onclick="incrementaValor(10, 'batata');return false;"
+          >+</a
+        ><br />
+      </div>
+      <div>
+        <label for="biscoitopolvilho">Biscoito Polvilho (R$1.20):</label>
+        <a
+          href="#"
+          onclick="decrementaValor(0, 'biscoitopolvilho'); return false;"
+          >-</a
+        >
+        <input
+          type="number"
+          id="biscoitopolvilho"
+          name="biscoitopolvilho"
+          min="0"
+        /><a
+          href="#"
+          onclick="incrementaValor(10, 'biscoitopolvilho');return false;"
+          >+</a
+        ><br />
+      </div>
+      <div>
+        <label for="doritos">Doritos (R$1.30):</label>
+        <a href="#" onclick="decrementaValor(0, 'doritos'); return false;">-</a>
+        <input type="number" id="doritos" name="doritos" min="0" /><a
+          href="#"
+          onclick="incrementaValor(10, 'doritos');return false;"
+          >+</a
+        ><br />
+      </div>
+      <div>
+        <label for="fofura">Fofura (R$1.30):</label>
+        <a href="#" onclick="decrementaValor(0, 'fofura'); return false;">-</a>
+        <input type="number" id="fofura" name="fofura" min="0" /><a
+          href="#"
+          onclick="incrementaValor(10, 'fofura');return false;"
+          >+</a
+        ><br />
+      </div>
+      <div>
+        <label for="skinny">Skinny (R$2.00):</label>
+        <a href="#" onclick="decrementaValor(0, 'skinny'); return false;">-</a>
+        <input type="number" id="skinny" name="skinny" min="0" /><a
+          href="#"
+          onclick="incrementaValor(10, 'skinny');return false;"
+          >+</a
+        ><br />
+      </div>
+      <div>
+        <label for="torcida">Torcida (R$2.00):</label>
+        <a href="#" onclick="decrementaValor(0, 'torcida'); return false;">-</a>
+        <input type="number" id="torcida" name="torcida" min="0" /><a
+          href="#"
+          onclick="incrementaValor(10, 'torcida');return false;"
+          >+</a
+        ><br />
+      </div>
+      <div>
+        <label for="bolinhoduo">Bolinho Duo Bauducco (R$1.20):</label>
+        <a href="#" onclick="decrementaValor(0, 'bolinhoduo'); return false;"
+          >-</a
+        >
+        <input type="number" id="bolinhoduo" name="bolinhoduo" min="0" /><a
+          href="#"
+          onclick="incrementaValor(10, 'bolinhoduo');return false;"
+          >+</a
+        ><br />
+      </div>
+      <div>
+        <label for="pipocafrank">Pipoca Frank (R$1.70):</label>
+        <a href="#" onclick="decrementaValor(0, 'pipocafrank'); return false;"
+          >-</a
+        >
+        <input type="number" id="pipocafrank" name="pipocafrank" min="0" /><a
+          href="#"
+          onclick="incrementaValor(10, 'pipocafrank');return false;"
+          >+</a
+        ><br />
+      </div>
+      <div>
+        <label for="coca250ml">Coca-Cola 250ml (R$2.50):</label>
+        <a href="#" onclick="decrementaValor(0, 'coca250ml'); return false;"
+          >-</a
+        >
+        <input type="number" id="coca250ml" name="coca250ml" min="0" /><a
+          href="#"
+          onclick="incrementaValor(10, 'coca250ml');return false;"
+          >+</a
+        ><br />
+      </div>
+      <div>
+        <label for="guaravita290ml">Guaravita 290ml (R$1.50):</label>
+        <a
+          href="#"
+          onclick="decrementaValor(0, 'guaravita290ml'); return false;"
+          >-</a
+        >
+        <input
+          type="number"
+          id="guaravita290ml"
+          name="guaravita290ml"
+          min="0"
+        /><a
+          href="#"
+          onclick="incrementaValor(10, 'guaravita290ml');return false;"
+          >+</a
+        ><br />
+      </div>
+      <div>
+        <label for="sprite200ml">Sprite 200ml (R$2.00):</label>
+        <a href="#" onclick="decrementaValor(0, 'sprite200ml'); return false;"
+          >-</a
+        >
+        <input type="number" id="sprite200ml" name="sprite200ml" min="0" /><a
+          href="#"
+          onclick="incrementaValor(10, 'sprite200ml');return false;"
+          >+</a
+        ><br />
+      </div>
+      <div>
+        <label for="sucodelvale200ml">Suco Del Valle 200ml (R$2.00):</label>
+        <a
+          href="#"
+          onclick="decrementaValor(0, 'sucodelvale200ml'); return false;"
+          >-</a
+        >
+        <input
+          type="number"
+          id="sucodelvale200ml"
+          name="sucodelvale200ml"
+          min="0"
+        /><a
+          href="#"
+          onclick="incrementaValor(10, 'sucodelvale200ml');return false;"
+          >+</a
+        ><br />
+      </div>
+      <div>
+        <label for="portacracha">Porta Crachá (R$1.50):</label>
+        <a href="#" onclick="decrementaValor(0, 'portacracha'); return false;"
+          >-</a
+        >
+        <input type="number" id="portacracha" name="portacracha" min="0" /><a
+          href="#"
+          onclick="incrementaValor(10, 'portacracha');return false;"
+          >+</a
+        ><br />
+      </div>
+      <div>
+        <label for="puxacracha">Puxa-Crachá (R$2.50):</label>
+        <a href="#" onclick="decrementaValor(0, 'puxacracha'); return false;"
+          >-</a
+        >
+        <input type="number" id="puxacracha" name="puxacracha" min="0" /><a
+          href="#"
+          onclick="incrementaValor(10, 'puxacracha');return false;"
+          >+</a
+        ><br />
+      </div>
+
+      <button type="submit" id="submitBtn">Enviar</button>
+    </form>
+    <!-- Inclua o seu arquivo JavaScript -->
+    <script src="script.js"></script>
   </body>
 </html>
